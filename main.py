@@ -40,6 +40,9 @@ else:
     print("could not find title ... ")
     print("")
 
+print("")
+print("")
+
 
 for paragraph in paragraphs:
     print(format_paragraph(paragraph.text))
