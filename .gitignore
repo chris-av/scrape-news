@@ -1,0 +1,13 @@
+# virtual environment
+env
+venv
+
+
+# environment vars
+.env
+
+
+# misc
+__pycache__
+
+
