@@ -1,5 +1,5 @@
 title_prefix = "##"
-paragraph_prefix = "--"
+paragraph_prefix = "  "
 
 
 def format_title(txt: str, max_w=80, padding=5) -> str:
