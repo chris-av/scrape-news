@@ -17,4 +17,7 @@ def format_paragraph(txt: str, max_w=80, padding=2) -> str:
     padding_x = max_w - padding*2
     split_txt = [txt[i:i+padding_x] for i in range(0, len(txt), padding_x)]
     split_txt = list(map(lambda x: f"{paragraph_prefix} {x}", split_txt))
+    for indx, elem in enumerate(split_txt):
+        needed_spaces = max_w - len(paragraph_prefix) - len(elem)
+        split_txt[indx] = elem + (needed_spaces)*" " + paragraph_prefix
     return "\n".join(split_txt)
