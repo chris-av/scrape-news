@@ -2,7 +2,6 @@ title_prefix = "##"
 paragraph_prefix = "--"
 
 
-def format_title(txt, max_w=80):
 def format_title(txt: str, max_w=80, padding=5) -> str:
     # split text by straight number of characters
     padding_x = max_w - padding*2
