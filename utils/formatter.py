@@ -21,6 +21,9 @@ def format_title(txt: str, max_w=80, padding=5) -> str:
             line = ""
             char_count = len(next_part)
             line += next_part
+
+    title_frame.append(line.strip())
+    split_txt = title_frame
     split_txt = list(map(lambda x: f"{title_prefix} {x}", split_txt))
     for indx, elem in enumerate(split_txt):
         needed_spaces = max_w - len(title_prefix) - len(elem)
