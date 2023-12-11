@@ -4,14 +4,13 @@ from bs4 import BeautifulSoup
 from utils.formatter import format_title, format_paragraph
 
 
-if len(args) < 2:
 args = sys.argv[1:]
+if len(args) < 1:
     print("did not supply enough arguments")
     raise Exception("did not supply enough arguments, please pass a full link")
 
 
 link = args[1]
-if len(args) > 2:
     print(f"passed in multiple args, assuming that the link is {link}")
     print("")
 
