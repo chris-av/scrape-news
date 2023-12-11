@@ -2,6 +2,7 @@ import requests
 import sys
 from bs4 import BeautifulSoup
 from utils.formatter import format_title, format_paragraph
+from utils.parse_args import extract_args
 
 
 args = sys.argv[1:]
@@ -10,17 +11,11 @@ if len(args) < 1:
     raise Exception("did not supply enough arguments, please pass a full link")
 
 
-link = args[1]
-    print(f"passed in multiple args, assuming that the link is {link}")
-    print("")
-
-
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-    'Connection': 'keep-alive',
-}
-
+config = extract_args(args)
+link = config["link"]
+headers = config["headers"]
+max_w = config["max-w"]
+padding = config["padding"]
 response = requests.get(link, headers=headers)
 
 if response.status_code != 200:
@@ -34,7 +29,9 @@ paragraphs = soup.findAll("p")
 
 
 if title:
-    print(format_title(title.text))
+    print("")
+    out = format_title(title.text, max_w=max_w, padding=padding)
+    print(out)
 else:
     print("could not find title ... ")
     print("")
@@ -44,6 +41,7 @@ print("")
 
 
 for paragraph in paragraphs:
-    print(format_paragraph(paragraph.text))
+    out = format_paragraph(paragraph.text, max_w=max_w, padding=padding)
+    print(out)
     print("")
 
