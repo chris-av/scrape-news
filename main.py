@@ -16,7 +16,9 @@ link = config["link"]
 headers = config["headers"]
 max_w = config["max-w"]
 padding = config["padding"]
-response = requests.get(link, headers=headers)
+session = requests.session()
+session.cookies.clear()
+response = session.get(link, headers=headers)
 
 if response.status_code != 200:
     raise Exception("status code is not 200, throwing error")
