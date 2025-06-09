@@ -1,4 +1,5 @@
 import json
+import random
 
 
 def extract_args(args: list[str]) -> dict:
@@ -6,7 +7,7 @@ def extract_args(args: list[str]) -> dict:
     config = {
         "link": "",
         "headers": {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'User-Agent': pick_header(),
             'Connection': 'keep-alive',
         },
         "max-w": 80,
@@ -66,3 +67,22 @@ def extract_args(args: list[str]) -> dict:
                 raise(e)
 
     return config
+
+
+def pick_header():
+    headers_list = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
+    ]
+    rand_int = random.randint(0, len(headers_list)-1)
+    print(f"getting header: {rand_int} / {len(headers_list)}")
+    use_header = headers_list[rand_int]
+    print(f"using header : {use_header}")
+    return use_header
+
