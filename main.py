@@ -19,10 +19,7 @@ padding = config["padding"]
 session = requests.session()
 session.cookies.clear()
 response = session.get(link, headers=headers)
-
-if response.status_code != 200:
-    raise Exception("status code is not 200, throwing error")
-
+response.raise_for_status()
 
 
 soup = BeautifulSoup(response.content, "lxml")
