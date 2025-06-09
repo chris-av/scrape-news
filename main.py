@@ -21,8 +21,7 @@ session.cookies.clear()
 response = session.get(link, headers=headers)
 response.raise_for_status()
 
-
-soup = BeautifulSoup(response.content, "lxml")
+soup = BeautifulSoup(response.content, "html.parser")
 title = soup.find("h1")
 paragraphs = soup.findAll("p")
 
