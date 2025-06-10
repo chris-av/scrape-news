@@ -2,14 +2,14 @@ import requests
 import re
 from bs4 import BeautifulSoup, Tag
 from utils.colors import Colors
-from utils.headers import get_random_header
+from utils.headers import get_random_user_agent
 
 class WashingtonPost:
     def __init__(self) -> None:
         self.homepage_url = "https://washingtonpost.com"
         self.session = requests.sessions.session()
 
-        self.session.headers.update({ "User-Agent": get_random_header() })
+        self.session.headers.update({ "User-Agent": get_random_user_agent() })
         self.session.headers.update({ "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" })
         self.session.headers.update({ "Accept-Language": "en-US,en;q=0.5" })
         self.session.headers.update({ "Accept-Encoding": "gzip, deflate, br, zstd" })

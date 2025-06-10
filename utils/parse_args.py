@@ -1,5 +1,5 @@
 import json
-from utils.headers import get_random_header
+from utils.headers import get_random_user_agent
 
 
 def extract_args(args: list[str]) -> dict:
